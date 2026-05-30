@@ -1,116 +1,141 @@
 ---
-// src/pages/index.astro
-import Layout from '../layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
 
-// Your project data array — feel free to modify the text or add more projects here
-const projects = [
-  {
-    title: "Taco-DB Engine",
-    description: "An embedded storage engine featuring a B+ Tree index layout, custom page management, and Volcano-style iterator execution.",
-    tech: ["C++", "Storage Engines", "Database Systems"],
-    link: "#"
-  },
-  {
-    title: "Distributed MapReduce Framework",
-    description: "A fault-tolerant distributed data processing library implementing Master/Worker coordinating tasks over RPC.",
-    tech: ["Go", "Distributed Systems", "gRPC"],
-    link: "#"
-  },
-  {
-    title: "Autonomous Vehicle Model Distillation",
-    description: "Distilling large behavioral prediction models into lightweight inference models targeted for real-time edge hardware.",
-    tech: ["PyTorch", "Model Compression", "Computer Vision"],
-    link: "#"
-  }
-];
+import About from "@/components/sections/About.astro";
+import Experience from "@/components/sections/Experience.astro";
+import Hero from "@/components/sections/Hero.astro";
+import Projects from "@/components/sections/Projects.astro";
+import Skills from "@/components/sections/Skills.astro";
+import KeyboardManager from "@/components/KeyboardManager.astro";
+import ThemeSwitch from "@/components/ThemeSwitch.astro";
+import NeovimButton from "../components/neovim/Button.astro";
 ---
 
-<Layout title="Harshvardhan Shinde | Software Engineer">
-  <main class="space-y-20">
-    
-    <section class="space-y-4">
-      <h1 class="text-4xl font-bold tracking-tight text-zinc-50">
-        Hi, I'm <span class="text-emerald-400">Harshvardhan Shinde</span>.
-      </h1>
-      <p class="text-lg text-zinc-400 leading-relaxed max-w-2xl">
-        I build high-performance backend systems, distributed architectures, and developer tooling. Currently focused on systems programming, database internals, and machine learning infrastructure.
-      </p>
-      <div class="flex gap-4 text-sm text-zinc-500 font-medium pt-2">
-        <a href="https://github.com" target="_blank" class="hover:text-zinc-200 transition-colors">GitHub</a>
-        <span>·</span>
-        <a href="https://linkedin.com" target="_blank" class="hover:text-zinc-200 transition-colors">LinkedIn</a>
-        <span>·</span>
-        <a href="mailto:your.email@example.com" class="hover:text-zinc-200 transition-colors">Email</a>
-      </div>
-    </section>
-
-    <section class="space-y-6">
-      <h2 class="text-xl font-semibold tracking-tight text-zinc-200">Selected Work</h2>
-      
-      <div class="grid gap-6">
-        {projects.map((project) => (
-          <a 
-            href={project.link}
-            class="group block p-6 bg-zinc-900/40 border border-zinc-800/50 rounded-xl hover:border-zinc-700/80 hover:bg-zinc-900/80 transition-all duration-200"
-          >
-            <div class="flex justify-between items-start gap-4">
-              <h3 class="font-medium text-zinc-100 group-hover:text-emerald-400 transition-colors">
-                {project.title}
-              </h3>
-              <span class="text-zinc-600 group-hover:text-zinc-400 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 text-sm">
-                ↗
-              </span>
-            </div>
-            <p class="mt-2 text-sm text-zinc-400 leading-relaxed">
-              {project.description}
-            </p>
-            <div class="flex flex-wrap gap-2 mt-4">
-              {project.tech.map((techItem) => (
-                <span class="text-xs px-2.5 py-1 bg-zinc-800/40 text-zinc-400 rounded-md border border-zinc-800/60">
-                  {techItem}
-                </span>
-              ))}
-            </div>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <section class="space-y-6">
-      <div class="space-y-1">
-        <h2 class="text-xl font-semibold tracking-tight text-zinc-200">Get in Touch</h2>
-        <p class="text-sm text-zinc-400">Have an interesting technical problem or opportunity? Drop a line.</p>
-      </div>
-
-      <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4 max-w-md">
-        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-        
-        <div>
-          <input 
-            type="email" 
-            name="email" 
-            required 
-            placeholder="your.email@example.com" 
-            class="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all"
-          />
-        </div>
-        <div>
-          <textarea 
-            name="message" 
-            required 
-            rows="4" 
-            placeholder="Your message..." 
-            class="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all"
-          ></textarea>
-        </div>
-        <button 
-          type="submit" 
-          class="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-950 font-medium text-sm rounded-lg transition-colors shadow-sm"
-        >
-          Send Message
-        </button>
-      </form>
-    </section>
-
+<Layout title="Anmol Singh | Full Stack Developer | anmol.pro">
+  <main
+    class="relative grid h-full max-w-7xl gap-12 p-8 max-sm:py-16 md:min-h-screen md:grid-cols-6 md:p-16 xl:gap-24 text-skin-base print:gap-4"
+  >
+    <div
+      class="slide-enter space-y-6 ease-in md:col-span-2 print:grid print:grid-cols-5 print:space-y-0 md:sticky top-0 self-start h-min"
+    >
+      <Hero className="col-span-2" />
+      <About className="col-span-3" />
+      <ThemeSwitch />
+      <NeovimButton />
+    </div>
+    <div
+      class="slide-enter-content space-y-12 md:col-span-4 print:grid print:grid-cols-5 print:grid-flow-row print:gap-2 print:space-y-0"
+    >
+      <Experience className="print:col-span-3" />
+      {
+        (
+          <>
+            <Projects className="print:hidden" />
+            <Skills className="print:col-span-full" />
+          </>
+        )
+      }
+    </div>
   </main>
+  <KeyboardManager />
 </Layout>
+
+<style is:global>
+  * {
+    scrollbar-color: var(--color-button-muted) var(--color-fill);
+  }
+  @page {
+    size: auto;
+    margin: 0;
+  }
+  main {
+    margin: auto;
+    width: 100%;
+  }
+
+  @keyframes slide-enter {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .slide-enter,
+    .slide-enter-content > *:not(:has(.table-of-contents)) {
+      --enter-stage: 0;
+      --enter-step: 150ms;
+      --enter-initial: 0ms;
+      animation: slide-enter 1s both 1;
+      animation-delay: calc(
+        var(--enter-initial) + var(--enter-stage) * var(--enter-step)
+      );
+    }
+
+    .slide-enter-content > *:nth-child(1) {
+      --enter-stage: 1 !important;
+    }
+    .slide-enter-content > *:nth-child(2) {
+      --enter-stage: 2 !important;
+    }
+    .slide-enter-content > *:nth-child(3) {
+      --enter-stage: 3 !important;
+    }
+    .slide-enter-content > *:nth-child(4) {
+      --enter-stage: 4 !important;
+    }
+    .slide-enter-content > *:nth-child(5) {
+      --enter-stage: 5 !important;
+    }
+    .slide-enter-content > *:nth-child(6) {
+      --enter-stage: 6 !important;
+    }
+    .slide-enter-content > *:nth-child(7) {
+      --enter-stage: 7 !important;
+    }
+    .slide-enter-content > *:nth-child(8) {
+      --enter-stage: 8 !important;
+    }
+    .slide-enter-content > *:nth-child(9) {
+      --enter-stage: 9 !important;
+    }
+    .slide-enter-content > *:nth-child(10) {
+      --enter-stage: 10 !important;
+    }
+    .slide-enter-content > *:nth-child(11) {
+      --enter-stage: 11 !important;
+    }
+    .slide-enter-content > *:nth-child(12) {
+      --enter-stage: 12 !important;
+    }
+    .slide-enter-content > *:nth-child(13) {
+      --enter-stage: 13 !important;
+    }
+    .slide-enter-content > *:nth-child(14) {
+      --enter-stage: 14 !important;
+    }
+    .slide-enter-content > *:nth-child(15) {
+      --enter-stage: 15 !important;
+    }
+    .slide-enter-content > *:nth-child(16) {
+      --enter-stage: 16 !important;
+    }
+    .slide-enter-content > *:nth-child(17) {
+      --enter-stage: 17 !important;
+    }
+    .slide-enter-content > *:nth-child(18) {
+      --enter-stage: 18 !important;
+    }
+    .slide-enter-content > *:nth-child(19) {
+      --enter-stage: 19 !important;
+    }
+    .slide-enter-content > *:nth-child(20) {
+      --enter-stage: 20 !important;
+    }
+  }
+</style>
