@@ -1,67 +1,59 @@
 {
   "analyticsCode": "",
   "basics": {
-    "name": "Anmol Singh",
+    "name": "Harsh Shinde",
     "label": "Software Developer",
     "animated_main_label": "developer",
     "animated_secondary_initial_label": "software",
-    "animated_secondary_final_label": "fullstack",
+    "animated_secondary_final_label": "",
     "image": "/pfp.jpg",
     "email": "anmolsingh51200@gmail.com",
     "url": "https://anmol.pro",
     "summary": "Full Stack developer with experience building and deploying production-ready web apps in freelance teams. Delivered two client websites and worked closely with teams to create scalable, maintainable solutions.",
     "theme": "platinum",
     "location": {
-      "address": "Panipat",
-      "city": "Haryana",
-      "countryCode": "IN",
-      "region": "India"
+      "address": "Cheektowaga",
+      "city": "Buffalo",
+      "countryCode": "USA",
+      "region": "United States"
     },
     "profiles": [
-      {
-        "network": "X / Twitter",
-        "icon": "ri:twitter-fill",
-        "color": "#1DA1F2",
-        "username": "@anmolthedev",
-        "url": "https://x.com/anmolthedev"
-      },
+     
       {
         "network": "GitHub",
         "icon": "mdi:github",
         "color": "#929AAB",
-        "username": "Anmol-TheDev",
-        "url": "https://github.com/Anmol-TheDev"
+        "username": "H-Shinde",
+        "url": "https://github.com/H-Shinde"
       },
       {
         "network": "Email",
         "icon": "ri:mail-fill",
         "color": "#D44638",
-        "username": "anmolsingh",
-        "url": "mailto:anmolsingh51200@gmail.com"
+        "username": "hdshinde202",
+        "url": "mailto:hdshinde202@gmail.com"
       },
       {
         "network": "GitHub Stars",
         "icon": "ri:star-line",
         "color": "#FBBC05",
         "username": "Star on GitHub",
-        "url": "https://github.com/Anmol-TheDev/potfolio2.0"
+        "url": ""
       }
     ]
   },
   "work": [
     {
-      "name": "Advika Innovate",
-      "position": "Frontend Developer",
-      "location_type": "Remote",
-      "location": "IN",
+      "name": "University at Buffalo",
+      "position": "CSE-305 Teaching Assitant",
+      "location_type": "In-Person",
+      "location": "Buffalo",
       "url": "https://advikainnovate.com/",
       "startDate": "2025-07-01",
       "endDate": null,
-      "summary": "Contributing to a centralized ecommerce platform to manage multiple ecommerce stores from a single interface, including order and inventory management.",
+      "summary": "",
       "responsibilities": [
-        "Developing and maintaining the frontend of a centralized ecommerce platform.",
-        "Implementing features for order management, inventory control, and other ecommerce functionalities.",
-        "Collaborating with the team to create a scalable and user-friendly platform."
+       
       ],
       "skills": {
         "React": "simple-icons:react",
