@@ -9,12 +9,14 @@ const navLinks = [
 
 <header class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-gray-100 dark:border-zinc-900 transition-colors duration-300">
   <nav class="max-w-6xl mx-auto px-6 h-24 flex justify-between items-center">
-    <div class="text-2xl font-normal tracking-wide text-black dark:text-white">
+    <!-- Logo/Name -->
+    <div class="text-xl sm:text-2xl font-normal tracking-wide text-black dark:text-white cursor-default">
       Harshvardhan Shinde
     </div>
     
-    <div class="flex items-center gap-6">
-      <ul class="flex gap-8 text-lg font-medium">
+    <div class="flex items-center gap-4 sm:gap-6">
+      <!-- Desktop Links (Hidden on Mobile) -->
+      <ul class="hidden md:flex gap-8 text-lg font-medium">
         {navLinks.map(link => (
           <li>
             <a href={link.href} class="text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors">
@@ -27,41 +29,91 @@ const navLinks = [
       <!-- THE THEME TOGGLE BUTTON -->
       <button 
         id="theme-toggle" 
-        class="p-2 rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition-all cursor-pointer z-50 block" 
+        class="p-2 rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition-all cursor-pointer z-50" 
         aria-label="Toggle dark mode"
       >
-        <!-- Sun Icon (Hidden in Light, Visible in Dark) -->
         <svg class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
         </svg>
-        <!-- Moon Icon (Visible in Light, Hidden in Dark) -->
         <svg class="w-5 h-5 block dark:hidden text-zinc-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
         </svg>
       </button>
+
+      <!-- Hamburger Button (Visible only on Mobile) -->
+      <button 
+        id="menu-btn" 
+        class="block md:hidden focus:outline-none z-50 relative w-6 h-5 flex flex-col justify-between cursor-pointer"
+        aria-label="Open navigation menu"
+      >
+        <span class="w-full h-0.5 bg-black dark:bg-white transition-all duration-300 origin-top-left"></span>
+        <span class="w-full h-0.5 bg-black dark:bg-white transition-all duration-300"></span>
+        <span class="w-full h-0.5 bg-black dark:bg-white transition-all duration-300 origin-bottom-left"></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile Menu Dropdown Panel (Slides out / Shows on click) -->
+  <div 
+    id="mobile-menu" 
+    class="hidden fixed inset-0 bg-white dark:bg-zinc-950 z-40 flex flex-col items-center justify-center gap-8 text-2xl font-medium transition-all duration-300"
+  >
+    {navLinks.map(link => (
+      <a href={link.href} class="mobile-link text-zinc-800 dark:text-zinc-200 hover:text-black dark:hover:text-white transition-colors">
+        {link.label}
+      </a>
+    ))}
+  </div>
 </header>
 
 <script is:inline>
-  function initThemeToggle() {
+  function initNavbar() {
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
     const themeToggle = document.getElementById('theme-toggle');
-    
+
+    // Toggle Mobile Menu Open/Close
+    if (menuBtn && mobileMenu) {
+      menuBtn.removeEventListener('click', toggleMenu);
+      menuBtn.addEventListener('click', toggleMenu);
+      
+      mobileLinks.forEach(link => {
+        link.removeEventListener('click', toggleMenu);
+        link.addEventListener('click', toggleMenu);
+      });
+    }
+
+    function toggleMenu() {
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('flex');
+      
+      // Animate hamburger lines into an 'X'
+      const spans = menuBtn.querySelectorAll('span');
+      if (spans.length === 3) {
+        spans[0].classList.toggle('rotate-45');
+        spans[0].classList.toggle('translate-x-1');
+        spans[0].classList.toggle('translate-y-0.5');
+        spans[1].classList.toggle('opacity-0');
+        spans[2].classList.toggle('-rotate-45');
+        spans[2].classList.toggle('translate-x-1');
+        spans[2].classList.toggle('-translate-y-0.5');
+      }
+    }
+
+    // Toggle Dark/Light Theme
     if (themeToggle) {
-      // Remove any old event listeners just in case Astro re-renders
-      themeToggle.removeEventListener('click', handleToggle);
-      themeToggle.addEventListener('click', handleToggle);
+      themeToggle.removeEventListener('click', handleThemeToggle);
+      themeToggle.addEventListener('click', handleThemeToggle);
+    }
+
+    function handleThemeToggle() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
   }
 
-  function handleToggle() {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  }
-
-  // Run immediately on file load
-  initThemeToggle();
-
-  // Fallback for Astro lifecycle / delay loads
-  document.addEventListener('DOMContentLoaded', initThemeToggle);
+  // Fire right away and ensure listeners wire up properly
+  initNavbar();
+  document.addEventListener('DOMContentLoaded', initNavbar);
 </script>
