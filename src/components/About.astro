@@ -1,0 +1,46 @@
+---
+// src/components/About.astro
+---
+<section id="about" class="min-h-[80vh] pt-20 pb-12 flex flex-col justify-center">
+  <p class="text-center text-sm text-zinc-400 tracking-widest uppercase font-medium mb-1">Get To Know More</p>
+  <h1 class="text-4xl font-bold text-center mb-12 text-zinc-900 dark:text-white">About Me</h1>
+  
+  <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
+    <div class="w-64 h-64 md:w-[300px] md:h-[300px] shrink-0">
+      <img 
+        src="/assets/about-pic.png" 
+        alt="About Profile" 
+        class="rounded-3xl w-full h-full object-cover shadow-sm border border-zinc-100 dark:border-zinc-800" 
+      />
+    </div>
+    
+    <div class="flex-1 w-full max-w-2xl">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+        <div class="p-6 bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 text-center shadow-sm">
+          <h3 class="font-bold text-zinc-800 dark:text-zinc-100 text-lg mb-1">Experience</h3>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            Research Intern<br />
+            CSE-305 Teaching Assistant<br />
+            Peer Mentor
+          </p>
+        </div>
+        
+        <div class="p-6 bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 text-center shadow-sm">
+          <h3 class="font-bold text-zinc-800 dark:text-zinc-100 text-lg mb-1">Education: UB</h3>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            B.S/M.S in Computer Science<br />
+            Minor in Mathematics
+          </p>
+        </div>
+      </div>
+      
+      <div class="text-zinc-600 dark:text-zinc-300 text-base leading-relaxed text-justify bg-zinc-50/50 dark:bg-zinc-900/50 p-6 rounded-3xl border border-zinc-100 dark:border-zinc-900">
+        <p>
+          I'm a developer and CS Graduate student at UB passionate about building high-performance software. 
+          With a strong foundation in mathematics and hands-on experience ranging from deep learning and database internals to modern frontend development, 
+          I thrive on tackling complex technical challenges across the entire stack. When I'm not writing code or analyzing data, you can usually find me studying Japanese or staying active at the gym.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

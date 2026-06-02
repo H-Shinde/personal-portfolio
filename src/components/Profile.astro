@@ -1,0 +1,36 @@
+---
+// src/components/Profile.astro
+---
+<section id="profile" class="min-h-[calc(100vh-6rem)] flex flex-col md:flex-row justify-center items-center gap-12 py-12 md:py-0">
+  
+  <div class="w-64 h-64 md:w-[380px] md:h-[380px] rounded-full overflow-hidden shadow-md border dark:border-zinc-800">
+    <img 
+      src="/assets/profile.jpg" 
+      alt="Harshvardhan Shinde" 
+      class="w-full h-full object-cover"
+    />
+  </div>
+  
+  <div class="text-center md:text-left self-center">
+    <p class="font-semibold text-zinc-500 dark:text-zinc-400 tracking-wide text-sm md:text-base">Hello, I'm</p>
+    <h1 class="text-4xl md:text-5xl font-bold my-2 text-zinc-900 dark:text-white">Harshvardhan Shinde</h1>
+    <p class="text-xl md:text-2xl text-zinc-600 dark:text-zinc-300 mb-6 font-medium">Software Developer</p>
+    
+    <div class="flex justify-center md:justify-start gap-4">
+      <a 
+        href="/assets/HarshvardhanShinde_New_Main.pdf" 
+        target="_blank" 
+        class="font-semibold px-6 py-3 min-w-[140px] text-center border border-zinc-700 text-zinc-800 dark:border-zinc-400 dark:text-zinc-200 rounded-full hover:bg-zinc-800 hover:text-white dark:hover:bg-zinc-200 dark:hover:text-zinc-900 transition-all duration-300 shadow-sm"
+      >
+        Download CV
+      </a>
+      <a 
+        href="#contact" 
+        class="font-semibold px-6 py-3 min-w-[140px] text-center border border-zinc-880 bg-zinc-800 text-white dark:border-zinc-200 dark:bg-zinc-200 dark:text-zinc-900 rounded-full hover:bg-black hover:border-black dark:hover:bg-white dark:hover:border-white transition-all duration-300 shadow-sm"
+      >
+        Contact Info
+      </a>
+    </div>
+  </div>
+
+</section>
