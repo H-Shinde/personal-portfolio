@@ -9,9 +9,8 @@ const navLinks = [
 
 <header class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-gray-100 dark:border-zinc-900 transition-colors duration-300">
   <nav class="max-w-6xl mx-auto px-6 h-24 flex justify-between items-center relative z-50">
-    <div class="text-xl sm:text-2xl font-normal tracking-wide text-black dark:text-white cursor-default">
-      Harshvardhan Shinde
-    </div>
+    
+
     
     <div class="flex items-center gap-4 sm:gap-6">
       <ul class="hidden md:flex gap-8 text-lg font-medium">
@@ -93,24 +92,17 @@ const navLinks = [
     function toggleMenu() {
       const spans = menuBtn.querySelectorAll('span');
       
-      // Explicit Open/Close handling using contains
       if (mobileMenu.classList.contains('hidden')) {
-        // Open the menu cleanly
         mobileMenu.classList.remove('hidden');
         mobileMenu.classList.add('flex');
-        
-        // Form the X animation
         if (spans.length === 3) {
           spans[0].classList.add('rotate-45', 'translate-x-1', 'translate-y-0.5');
           spans[1].classList.add('opacity-0');
           spans[2].classList.add('-rotate-45', 'translate-x-1', '-translate-y-0.5');
         }
       } else {
-        // Close the menu cleanly
         mobileMenu.classList.remove('flex');
         mobileMenu.classList.add('hidden');
-        
-        // Reset the hamburger lines back to normal
         if (spans.length === 3) {
           spans[0].classList.remove('rotate-45', 'translate-x-1', 'translate-y-0.5');
           spans[1].classList.remove('opacity-0');
@@ -120,11 +112,9 @@ const navLinks = [
     }
   }
 
-  // Initialize hooks immediately on file parse
   setupTheme();
   setupMobileMenu();
 
-  // Double check initialization when DOM is fully settled
   document.addEventListener('DOMContentLoaded', () => {
     setupTheme();
     setupMobileMenu();
