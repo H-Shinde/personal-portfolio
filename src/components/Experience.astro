@@ -1,0 +1,128 @@
+---
+const professionalExperiences = [
+  {
+    id: "swe-lab",
+    role: "Software Engineering Lab Intern",
+    company: "University at Buffalo",
+    location: "Amherst, NY",
+    duration: "June 2026 - Present",
+    bullets: [
+      "Co-architecting Phase 1 of a multimodal passive sensing platform designed to characterize tinnitus behavioral subtyping by integrating active and passive data streams across consumer-grade ecosystems (Fitbit API, iOS/Android).",
+      "Developing data ingestion pipelines to synchronize high-frequency passive sensing modalities (HRV, EDA, sleep quality, physical activity, and ambient sound levels) with smartphone-based Ecological Momentary Assessment (EMA) triggers.",
+      "Designing telemetry and user engagement features to mitigate the industry-standard 89% EMA non-adherence rate, ensuring robust data density required for downstream longitudinal predictive modeling.",
+      "Implementing data preprocessing and statistical clustering pipelines to analyze multi-device streams, translating physiological and environmental ground truths into distinct clinical and behavioral phenotypes."
+    ]
+  },
+  {
+    id: "ta-305",
+    role: "Teaching Assistant (CSE-305)",
+    company: "University at Buffalo",
+    location: "Amherst, NY",
+    duration: "August 2025 - Present",
+    bullets: [
+      "Improved student comprehension and assignment completion rates for 600+ students by leading weekly recitations and office hours focused on functional programming concepts in OCaml.",
+      "Reduced student debugging time by guiding structured problem-solving approaches and functional design patterns across assignments and exams.",
+      "Collaborated with instructors in weekly meetings to improve course delivery and student outcomes while maintaining grading consistency and academic integrity across 600+ students by evaluating exams and projects using standardized rubrics."
+    ]
+  },
+  {
+    id: "ai-res",
+    role: "AI Research/Development",
+    company: "University at Buffalo",
+    location: "Amherst, NY",
+    duration: "April 2025 - December 2025",
+    bullets: [
+      "Contributing as a co-author and developer on a soon-to-be-published Medical Spanish conversation app, ensuring accurate medical language usage and AI alignment with healthcare needs.",
+      "Collaborating within an interdisciplinary team including linguistics and pre-med researchers to align AI outputs with real-world medical communication needs.",
+      "Designing and implementing natural language processing (NLP) pipelines to parse and analyze Spanish medical vocabulary and sentence structures."
+    ]
+  }
+];
+---
+
+<section id="experience" class="min-h-[calc(100vh-6rem)] flex flex-col justify-center items-center py-12 relative w-full max-w-4xl mx-auto px-6">
+  <p class="text-center font-semibold text-zinc-500 dark:text-zinc-400 tracking-wide text-sm md:text-base">Explore My Journey</p>
+  <h1 class="text-4xl md:text-5xl font-bold text-center mt-2 mb-10 text-zinc-900 dark:text-white">Experience</h1>
+  
+  <div class="w-full flex flex-col gap-4 relative z-20">
+    {professionalExperiences.map((exp) => (
+      <div class="exp-card w-full rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-sm backdrop-blur-sm transition-all duration-300">
+        
+        <button 
+          class="exp-toggle w-full p-5 md:p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-left cursor-pointer focus:outline-none select-none"
+          data-target={exp.id}
+          aria-expanded="false"
+        >
+          <div>
+            <h2 class="text-lg md:text-xl font-bold text-zinc-900 dark:text-white leading-tight">
+              {exp.role}
+            </h2>
+            <p class="text-sm md:text-base font-medium text-zinc-500 dark:text-zinc-400 mt-1">
+              {exp.company} <span class="mx-1.5 text-zinc-300 dark:text-zinc-700">•</span> {exp.location}
+            </p>
+          </div>
+          
+          <div class="flex items-center gap-3 self-end sm:self-auto shrink-0">
+            <span class="text-xs md:text-sm font-semibold px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 whitespace-nowrap">
+              {exp.duration}
+            </span>
+            <svg class="caret-icon w-5 h-5 text-zinc-400 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </button>
+
+        <div id={exp.id} class="exp-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <div class="px-5 pb-6 md:px-6 md:pb-8 border-t border-zinc-100 dark:border-zinc-800/60 pt-4 mt-1">
+            <ul class="space-y-3">
+              {exp.bullets.map((bullet) => (
+                <li class="flex gap-3 items-start text-zinc-600 dark:text-zinc-300 text-sm md:text-base leading-relaxed">
+                  <span class="text-zinc-400 dark:text-zinc-600 mt-1.5 shrink-0 text-xs">◆</span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    ))}
+  </div>
+</section>
+
+<script is:inline>
+  function setupAccordion() {
+    const toggles = document.querySelectorAll('.exp-toggle');
+    toggles.forEach(toggle => {
+      toggle.removeEventListener('click', handleAccordionClick);
+      toggle.addEventListener('click', handleAccordionClick);
+    });
+  }
+
+  function handleAccordionClick(e) {
+    const btn = e.currentTarget;
+    const targetId = btn.getAttribute('data-target');
+    const content = document.getElementById(targetId);
+    const caret = btn.querySelector('.caret-icon');
+    const card = btn.closest('.exp-card');
+
+    if (!content || !content.classList.contains('exp-content')) return;
+
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+    if (!isExpanded) {
+      btn.setAttribute('aria-expanded', 'true');
+      content.style.maxHeight = content.scrollHeight + 'px';
+      caret.classList.add('rotate-180');
+      card.classList.add('border-zinc-400', 'dark:border-zinc-600');
+    } else {
+      btn.setAttribute('aria-expanded', 'false');
+      content.style.maxHeight = '0px';
+      caret.classList.remove('rotate-180');
+      card.classList.remove('border-zinc-400', 'dark:border-zinc-600');
+    }
+  }
+
+  setupAccordion();
+  document.addEventListener('DOMContentLoaded', setupAccordion);
+</script>

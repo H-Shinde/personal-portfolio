@@ -1,0 +1,119 @@
+---
+const projectData = [
+  {
+    title: "WiFi CSI Fitness Assessment System",
+    tags: ["ESP32-S3", "PyTorch", "DSP", "Python"],
+    image: "/assets/project-1.png",
+    githubLink: "https://github.com/H-Shinde",
+    bullets: [
+      "Built a device-free wireless sensing system using a transmitter-receiver pair of microcontrollers to assess bicep curl form quality via Channel State Information.",
+      "Engineered a multi-stage DSP pipeline incorporating static multipath subtraction and a 4th-order Butterworth bandpass filter.",
+      "Trained a feed-forward PyTorch neural network mapping frequency and energy features to a continuous form-quality score."
+    ]
+  },
+  {
+    title: "S&P 500 Big Data Pipeline",
+    tags: ["Hadoop HDFS", "Apache Spark", "Docker", "Python"],
+    image: "/assets/project-2.png",
+    githubLink: "https://github.com/H-Shinde",
+    bullets: [
+      "Engineered an end-to-end processing pipeline using Dockerized Hadoop HDFS and Apache Spark to analyze stock market data.",
+      "Designed a standalone HDFS cluster via Docker container execution supporting over 497k transactional rows.",
+      "Developed scalable analytical models utilizing Spark ML, applying 3 distributed machine learning algorithms."
+    ]
+  },
+  {
+    title: "Air Board",
+    tags: ["MediaPipe", "PyQt5", "Pyautogui", "OpenCV"],
+    image: "/assets/project-3.png",
+    githubLink: "https://github.com/H-Shinde",
+    bullets: [
+      "Developed a gesture-based control system using MediaPipe and PyQt5 that enables hands-free computer interaction.",
+      "Implemented multiple operational modes including drawing with OCR text conversion and mouse cursor control.",
+      "Engineered robust gesture recognition algorithms for pinch detection and specific hand poses."
+    ]
+  },
+  {
+    title: "Gambling Addicts Platform",
+    tags: ["MySQL", "JavaScript", "PHP", "HTML/CSS"],
+    image: "/assets/project-1.png",
+    githubLink: "https://github.com/H-Shinde",
+    bullets: [
+      "Developed a virtual casino platform to simulate popular games such as Poker, Blackjack, and Roulette.",
+      "Utilized Agile methodology with four development sprints, leveraging user stories within a team of five developers.",
+      "Engineered a secure full-stack web application incorporating password hashing and session validation."
+    ]
+  }
+];
+
+const doubledProjects = [...projectData, ...projectData];
+---
+
+<section id="projects" class="min-h-[calc(100vh-6rem)] flex flex-col justify-center items-center py-12 relative w-full overflow-hidden">
+  <p class="text-center font-semibold text-zinc-500 dark:text-zinc-400 tracking-wide text-sm md:text-base">Browse My Recent</p>
+  <h1 class="text-4xl md:text-5xl font-bold text-center mt-2 mb-16 text-zinc-900 dark:text-white">Projects</h1>
+  
+  <div class="w-full max-w-5xl overflow-hidden relative py-4 [mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]">
+    
+    <div class="flex gap-6 w-max animate-[scrollTrack_25s_linear_infinite] hover:[animation-play-state:paused]">
+      {doubledProjects.map((project) => (
+        <div class="w-[300px] sm:w-[355px] shrink-0 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 flex flex-col justify-between shadow-sm transition-all duration-300 hover:scale-105 hover:border-zinc-400 dark:hover:border-zinc-600 group">
+          
+          <div>
+            <div class="w-full h-40 rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-800/50 mb-4">
+              <img
+                src={project.image}
+                alt={project.title}
+                class="w-full h-full object-cover pointer-events-none group-hover:scale-102 transition-transform duration-300"
+              />
+            </div>
+
+            <h2 class="text-lg font-bold text-zinc-900 dark:text-white leading-tight mb-1.5">
+              {project.title}
+            </h2>
+            
+            <div class="flex flex-wrap gap-1 mb-4">
+              {project.tags.map((tag) => (
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <ul class="space-y-2 mb-4">
+              {project.bullets.map((bullet) => (
+                <li class="flex gap-2 items-start text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed">
+                  <span class="text-zinc-400 dark:text-zinc-600 shrink-0">•</span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="flex gap-2 pt-2 w-full">
+            <a
+              href={project.githubLink}
+              target="_blank"
+              class="flex-1 font-semibold text-xs px-3 py-2.5 text-center border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-full hover:bg-zinc-800 hover:text-white dark:hover:bg-zinc-200 dark:hover:text-zinc-900 transition-all duration-300 shadow-sm"
+            >
+              GitHub
+            </a>
+          </div>
+          
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* Inject keyframes globally so Tailwind's arbitrary animator hook can bind it instantly */
+  @keyframes scrollTrack {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

@@ -10,7 +10,19 @@ const navLinks = [
 <header class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-gray-100 dark:border-zinc-900 transition-colors duration-300">
   <nav class="max-w-6xl mx-auto px-6 h-24 flex justify-between items-center relative z-50">
     
+    <div class="flex items-center gap-3">
+      <div class="w-16 h-16 relative shrink-0">
+        <spline-viewer 
+          id="nav-logo-3d"
+          url="https://prod.spline.design/Wktm12YBxCIo3Kz0cwD9S7iE-Gvi/scene.splinecode"
+          class="w-full h-full block"
+        ></spline-viewer>
+      </div>
 
+      <div class="text-xl font-bold tracking-wider text-zinc-900 dark:text-white select-none min-w-[60px]">
+        <span id="typing-text"></span><span class="animate-pulse duration-700 text-zinc-400 dark:text-zinc-500">|</span>
+      </div>
+    </div>
     
     <div class="flex items-center gap-4 sm:gap-6">
       <ul class="hidden md:flex gap-8 text-lg font-medium">
@@ -38,7 +50,7 @@ const navLinks = [
 
       <button 
         id="menu-btn" 
-        class="block md:hidden focus:outline-none relative z-50 w-6 h-5 flex flex-col justify-between cursor-pointer"
+        class="block md:hidden focus:outline-none relative z-50 w-6 h-5 flex flex-col justify-between cursor-pointer shrink-0"
         aria-label="Open navigation menu"
       >
         <span class="w-full h-0.5 bg-black dark:bg-white transition-all duration-300 origin-top-left"></span>
@@ -59,6 +71,8 @@ const navLinks = [
     ))}
   </div>
 </header>
+
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.5/build/spline-viewer.js" is:inline></script>
 
 <script is:inline>
   function setupTheme() {
@@ -88,35 +102,83 @@ const navLinks = [
         link.addEventListener('click', toggleMenu);
       });
     }
+  }
 
-    function toggleMenu() {
-      const spans = menuBtn.querySelectorAll('span');
-      
-      if (mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.remove('hidden');
-        mobileMenu.classList.add('flex');
-        if (spans.length === 3) {
-          spans[0].classList.add('rotate-45', 'translate-x-1', 'translate-y-0.5');
-          spans[1].classList.add('opacity-0');
-          spans[2].classList.add('-rotate-45', 'translate-x-1', '-translate-y-0.5');
-        }
-      } else {
-        mobileMenu.classList.remove('flex');
-        mobileMenu.classList.add('hidden');
-        if (spans.length === 3) {
-          spans[0].classList.remove('rotate-45', 'translate-x-1', 'translate-y-0.5');
-          spans[1].classList.remove('opacity-0');
-          spans[2].classList.remove('-rotate-45', 'translate-x-1', '-translate-y-0.5');
-        }
+  function toggleMenu() {
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (!menuBtn || !mobileMenu) return;
+    const spans = menuBtn.querySelectorAll('span');
+    
+    if (mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+      if (spans.length === 3) {
+        spans[0].classList.add('rotate-45', 'translate-x-1', 'translate-y-0.5');
+        spans[1].classList.add('opacity-0');
+        spans[2].classList.add('-rotate-45', 'translate-x-1', '-translate-y-0.5');
+      }
+    } else {
+      mobileMenu.classList.remove('flex');
+      mobileMenu.classList.add('hidden');
+      if (spans.length === 3) {
+        spans[0].classList.remove('rotate-45', 'translate-x-1', 'translate-y-0.5');
+        spans[1].classList.remove('opacity-0');
+        spans[2].classList.remove('-rotate-45', 'translate-x-1', '-translate-y-0.5');
       }
     }
   }
 
+  // REUSABLE TYPING EFFECT ENGINE
+  let typingInterval;
+  function setupTypingEffect() {
+    const textTarget = document.getElementById('typing-text');
+    if (!textTarget) return;
+
+    clearInterval(typingInterval);
+    const textToType = "HDS";
+    let index = 0;
+    let isDeleting = false;
+    textTarget.textContent = "";
+
+    function typeLoop() {
+      const currentText = textTarget.textContent;
+
+      if (!isDeleting) {
+        textTarget.textContent = textToType.substring(0, index + 1);
+        index++;
+
+        if (index === textToType.length) {
+          isDeleting = true;
+          clearInterval(typingInterval);
+          // Pause at the end of typing before deleting
+          typingInterval = setInterval(typeLoop, 2000);
+        }
+      } else {
+        textTarget.textContent = textToType.substring(0, index - 1);
+        index--;
+
+        if (index === 0) {
+          isDeleting = false;
+          clearInterval(typingInterval);
+          // Pause briefly when empty before re-typing
+          typingInterval = setInterval(typeLoop, 500);
+        }
+      }
+    }
+
+    typingInterval = setInterval(typeLoop, 250);
+  }
+
+  // Initialize all elements cleanly on load
   setupTheme();
   setupMobileMenu();
+  setupTypingEffect();
 
   document.addEventListener('DOMContentLoaded', () => {
     setupTheme();
     setupMobileMenu();
+    setupTypingEffect();
   });
 </script>
