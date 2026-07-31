@@ -44,6 +44,22 @@ const projectData = [
       "Engineered a secure full-stack web application incorporating password hashing and session validation."
     ]
   }
+,
+
+   {
+  title: "AimSharp",
+  tags: ["Java", "Java Swing", "Git"],
+  image: "/assets/aimsharp.png",
+  githubLink: "https://github.com/H-Shinde/AimSharp",
+  demoLink:"https://github.com/H-Shinde/AimSharp/releases/tag/v1.0.0"
+  ,
+  bullets: [
+    "Developed a 2D desktop aim-trainer in Java to help FPS players improve target tracking and reaction times.",
+    "Engineered a dynamic UI using JFrame and CardLayout to manage seamless transitions across multiple JPanels.",
+    "Integrated custom graphics assets and themes while unifying multiple Java libraries into a single executable.",
+    "Managed version control and team collaboration via GitHub to merge features and publish executable releases."
+  ]
+}
 ];
 
 const doubledProjects = [...projectData, ...projectData];
@@ -89,16 +105,22 @@ const doubledProjects = [...projectData, ...projectData];
               ))}
             </ul>
           </div>
-
-          <div class="flex gap-2 pt-2 w-full">
-            <a
-              href={project.githubLink}
-              target="_blank"
-              class="flex-1 font-semibold text-xs px-3 py-2.5 text-center border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-full hover:bg-zinc-800 hover:text-white dark:hover:bg-zinc-200 dark:hover:text-zinc-900 transition-all duration-300 shadow-sm"
-            >
-              GitHub
-            </a>
-          </div>
+          <div class="flex gap-3 pt-2 w-full">
+  <a
+    href={project.demoLink}
+    target="_blank"
+    class="flex-1 flex justify-center items-center font-semibold text-xs px-3 py-2.5 text-center border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-full hover:bg-zinc-800 hover:text-white dark:hover:bg-zinc-200 dark:hover:text-zinc-900 transition-all duration-300 shadow-sm"
+  >
+    Demo
+  </a>
+  <a
+    href={project.githubLink}
+    target="_blank"
+    class="flex-1 flex justify-center items-center font-semibold text-xs px-3 py-2.5 text-center border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-full hover:bg-zinc-800 hover:text-white dark:hover:bg-zinc-200 dark:hover:text-zinc-900 transition-all duration-300 shadow-sm"
+  >
+    GitHub
+  </a>
+</div>
           
         </div>
       ))}
